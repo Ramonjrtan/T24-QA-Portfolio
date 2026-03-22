@@ -42,12 +42,6 @@ T24-QA-Portfolio/
 - Regression testing
 - Financial data validation
 
-## Suggested next upgrades
-- Add evidence screenshots for executed cases
-- Add JIRA-style defect IDs
-- Add API or automation examples for wrapper services
-- Add environment and test data management notes
-
 ## Author
 Ramon Tan Jr  
-Senior QA Engineer | Banking, Payments, and Core Banking QA
+Senior QA Engineer
