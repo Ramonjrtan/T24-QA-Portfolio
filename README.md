@@ -33,7 +33,7 @@ T24-QA-Portfolio/
 1. Open the Excel workbook in `Test-Cases/`.
 2. Update the **Status** column as you execute tests.
 3. Use the **Summary** sheet to show coverage and KPIs.
-4. Add screenshots, execution evidence, or automation links as your portfolio grows.
+4. Add screenshots, execution evidence, or automation links as portfolio grows.
 
 ## Testing themes
 - Functional testing
