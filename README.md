@@ -1,6 +1,6 @@
 # 🏦 T24 QA Portfolio (Temenos Transact)
 
-A domain-focused QA portfolio showcasing testing practices for **Temenos Transact (T24) Core Banking System**, covering end-to-end workflows, API validation, and financial data integrity.
+A domain-focused QA portfolio showcasing testing practices for **Temenos Transact (T24) Core Banking System**, covering end-to-end workflows, API validation, TAP (AAA) controls, and financial data integrity.
 
 ---
 
@@ -8,9 +8,10 @@ A domain-focused QA portfolio showcasing testing practices for **Temenos Transac
 
 This repository demonstrates how I structure **real-world QA assets for core banking systems**, including:
 
-* Reusable Excel-based test cases
+* Reusable Excel-based test cases with execution tracking
 * End-to-end banking flow scenarios
-* API-level validation (T24 subroutines)
+* API-level validation (T24 internal subroutines)
+* TAP (AAA) security and accounting validation
 * Sample defect reports
 * Portfolio-ready documentation for interviews and case studies
 
@@ -21,8 +22,9 @@ This repository demonstrates how I structure **real-world QA assets for core ban
 ```text
 T24-QA-Portfolio/
 ├── Test-Cases/
-│   ├── T24_QA_Test_Cases.xlsx
-│   ├── T24_API_Test_Cases.xlsx
+│   ├── T24_QA_Test_Cases_with_Execution_Report.xlsx
+│   ├── T24_API_Test_Cases_with_Execution_Report.xlsx
+│   ├── T24_AAA_Test_Cases_with_Execution_Report.xlsx
 ├── Test-Scenarios/
 │   └── End-to-End-Banking-Flow.md
 ├── Defect-Reports/
@@ -41,6 +43,11 @@ T24-QA-Portfolio/
 * Authorization lifecycle (NAU → LIVE)
 * Enquiry, history, and audit traceability
 * API-driven processing (validation, input, authorization)
+* TAP (AAA) model:
+
+  * Authentication (login/session control)
+  * Authorization (role-based access, maker/checker)
+  * Accounting (ledger validation, debit = credit)
 
 ---
 
@@ -56,16 +63,31 @@ This portfolio includes testing of key T24 internal APIs:
 
 ---
 
+## 📊 Execution & Reporting
+
+Enhanced Excel workbooks include an **Execution Report** sheet with:
+
+* Pass/Fail tracking
+* Summary by **AAA Area (Authentication / Authorization / Accounting)**
+* Summary by **Module**
+* Total cases, Passed, Failed, Blocked, Not Run
+* Pass rate (%)
+* Linked execution detail view from test cases
+
+👉 This simulates **real QA reporting used in enterprise projects**
+
+---
+
 ## ⚙️ How to Use This Portfolio
 
 1. Open Excel files under `Test-Cases/`
-2. Execute test cases and update the **Status** column (Pass/Fail)
-3. Use the **Execution Report** sheet to track progress and KPIs
-4. Review `Test-Scenarios/` for end-to-end validation flows
+2. Execute test cases and update the **Status** column (Pass/Fail/Blocked/Not Run)
+3. Review the **Execution Report** sheet for metrics and progress
+4. Explore `Test-Scenarios/` for end-to-end validation flows
 5. Extend with:
 
-   * Screenshots
-   * Execution evidence
+   * Screenshots (evidence)
+   * Defect logs
    * Automation scripts (future enhancement)
 
 ---
@@ -80,6 +102,7 @@ This portfolio demonstrates:
 * Authorization Flow Validation (Maker/Checker)
 * Financial Data Validation (Debit = Credit)
 * API Testing (T24 internal subroutines)
+* TAP (AAA) Validation (Authentication, Authorization, Accounting)
 * Regression Testing
 
 ---
@@ -90,6 +113,7 @@ This portfolio demonstrates:
 * Validates **core banking workflows end-to-end**
 * Demonstrates **domain expertise in banking + payments systems**
 * Includes **API-level validation (rare skill in QA portfolios)**
+* Covers **TAP (AAA) security model (high-value in banking QA)**
 * Structured for **real project usage and interview discussions**
 
 ---
@@ -98,8 +122,9 @@ This portfolio demonstrates:
 
 * Automation scripts (Playwright / API simulation)
 * CI/CD integration (test execution pipelines)
-* Expanded defect tracking and reporting
+* Defect tracking dashboard (linked to execution results)
 * Performance and batch testing scenarios
+* REST API testing (Postman integration for external services)
 
 ---
 
