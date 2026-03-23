@@ -14,6 +14,7 @@ This repo demonstrates how I structure domain-focused QA assets for core banking
 T24-QA-Portfolio/
 ├── Test-Cases/
 │   └── T24_QA_Test_Cases.xlsx
+│   └── T24_API_Test_Cases.xlsx
 ├── Test-Scenarios/
 │   └── End-to-End-Banking-Flow.md
 ├── Defect-Reports/
@@ -41,6 +42,7 @@ T24-QA-Portfolio/
 - Security and access control
 - Regression testing
 - Financial data validation
+- API testing
 
 ## Author
 Ramon Tan Jr  
