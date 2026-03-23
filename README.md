@@ -1,20 +1,28 @@
-# T24 QA Portfolio (Temenos Transact)
+# 🏦 T24 QA Portfolio (Temenos Transact)
 
-A sample QA portfolio focused on Temenos Transact (T24) core banking workflows.
+A domain-focused QA portfolio showcasing testing practices for **Temenos Transact (T24) Core Banking System**, covering end-to-end workflows, API validation, and financial data integrity.
 
-## Repository purpose
-This repo demonstrates how I structure domain-focused QA assets for core banking:
-- reusable Excel test cases
-- end-to-end banking scenarios
-- sample defect reports
-- portfolio-ready documentation for interviews or case studies
+---
 
-## Repository structure
+## 🎯 Repository Purpose
+
+This repository demonstrates how I structure **real-world QA assets for core banking systems**, including:
+
+* Reusable Excel-based test cases
+* End-to-end banking flow scenarios
+* API-level validation (T24 subroutines)
+* Sample defect reports
+* Portfolio-ready documentation for interviews and case studies
+
+---
+
+## 📁 Repository Structure
+
 ```text
 T24-QA-Portfolio/
 ├── Test-Cases/
-│   └── T24_QA_Test_Cases.xlsx
-│   └── T24_API_Test_Cases.xlsx
+│   ├── T24_QA_Test_Cases.xlsx
+│   ├── T24_API_Test_Cases.xlsx
 ├── Test-Scenarios/
 │   └── End-to-End-Banking-Flow.md
 ├── Defect-Reports/
@@ -22,28 +30,80 @@ T24-QA-Portfolio/
 └── README.md
 ```
 
-## Scope covered
-- Customer module
-- Account module
-- Funds Transfer
-- End-to-end maker/checker flow
-- Authorization control
-- History and enquiry traceability
+---
 
-## How to use this portfolio
-1. Open the Excel workbook in `Test-Cases/`.
-2. Update the **Status** column as you execute tests.
-3. Use the **Summary** sheet to show coverage and KPIs.
-4. Add screenshots, execution evidence, or automation links as portfolio grows.
+## 🧪 Scope Covered
 
-## Testing themes
-- Functional testing
-- Negative testing
-- Security and access control
-- Regression testing
-- Financial data validation
-- API testing
+* Customer module (onboarding & validation)
+* Account module (creation, configuration)
+* Funds Transfer (FT) transactions
+* End-to-end Maker/Checker flow
+* Authorization lifecycle (NAU → LIVE)
+* Enquiry, history, and audit traceability
+* API-driven processing (validation, input, authorization)
 
-## Author
-Ramon Tan Jr  
-Senior QA Engineer
+---
+
+## 🔍 API Coverage (T24 Internal APIs)
+
+This portfolio includes testing of key T24 internal APIs:
+
+* `VALIDATION.RTN` → Field validation & business rules
+* `INPUT.ROUTINE` → Pre-save processing
+* `AUTH.ROUTINE` → Post-authorization updates
+* `EB.API` → Program invocation
+* `BATCH.CONTROL` → Batch and EOD processing
+
+---
+
+## ⚙️ How to Use This Portfolio
+
+1. Open Excel files under `Test-Cases/`
+2. Execute test cases and update the **Status** column (Pass/Fail)
+3. Use the **Execution Report** sheet to track progress and KPIs
+4. Review `Test-Scenarios/` for end-to-end validation flows
+5. Extend with:
+
+   * Screenshots
+   * Execution evidence
+   * Automation scripts (future enhancement)
+
+---
+
+## 🧠 Testing Approach
+
+This portfolio demonstrates:
+
+* Functional Testing
+* Negative Testing
+* Integration Testing (Customer → Account → FT)
+* Authorization Flow Validation (Maker/Checker)
+* Financial Data Validation (Debit = Credit)
+* API Testing (T24 internal subroutines)
+* Regression Testing
+
+---
+
+## 💡 Key Highlights
+
+* Focus on **financial accuracy and accounting integrity**
+* Validates **core banking workflows end-to-end**
+* Demonstrates **domain expertise in banking + payments systems**
+* Includes **API-level validation (rare skill in QA portfolios)**
+* Structured for **real project usage and interview discussions**
+
+---
+
+## 🚀 Future Enhancements
+
+* Automation scripts (Playwright / API simulation)
+* CI/CD integration (test execution pipelines)
+* Expanded defect tracking and reporting
+* Performance and batch testing scenarios
+
+---
+
+## 👨‍💻 Author
+
+**Ramon Tan Jr**
+Senior QA Engineer | Core Banking | Payments | End-to-End Systems Validation
