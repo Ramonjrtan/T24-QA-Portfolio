@@ -1,148 +1,181 @@
 # 🏦 End-to-End Banking Flow Case Study (T24 QA)
 
+---
+
 ## 🎯 Scenario Objective
 
-Validate an end-to-end Temenos T24 core banking workflow from **customer onboarding to transaction posting**, ensuring:
+Validate an end-to-end **Temenos Transact (T24) core banking workflow** from **customer onboarding to transaction posting**, ensuring:
 
-* Data integrity
-* Correct authorization flow (Maker → Checker)
-* Accurate financial accounting (Debit = Credit)
+* Data integrity across modules
+* Correct authorization flow (**Maker → Checker**)
+* Accurate financial accounting (**Debit = Credit**)
+* Proper execution of API-driven processes
 
 ---
 
 ## 🔁 Business Flow
 
+```text
 Customer → Account → Funds Transfer → Statement / Accounting Entries
+```
 
 ---
 
 ## ⚙️ Preconditions
 
-* Maker and checker users are configured (segregation of duties)
+* Maker and checker users are configured (**segregation of duties**)
 * Required product/category setup exists (ACCOUNT, FT)
 * Accounts are active and transaction-enabled
 * Sufficient balance available for debit account
 * Test data approved for environment
 * API routines configured:
 
-  * VALIDATION.RTN
-  * INPUT.ROUTINE
-  * AUTH.ROUTINE
+  * `VALIDATION.RTN`
+  * `INPUT.ROUTINE`
+  * `AUTH.ROUTINE`
 
 ---
 
-## 🧪 Scenario Steps with QA Validation
+# 🧪 Scenario Execution with QA Validation
 
-### 👤 1. Create Customer
+---
 
-**Steps:**
+## 👤 1. Create Customer
+
+### Steps
 
 * Create new CUSTOMER record
 * Populate mandatory fields (Name, KYC, Address)
 * Validate → Commit → Authorize
 
-**QA Validation:**
+### QA Validation
 
-* Mandatory fields enforced (VALIDATION.RTN)
-* Default values applied correctly
-* Record lifecycle: NAU → LIVE
-* Duplicate customer detection
+* Mandatory fields enforced (**VALIDATION.RTN**)
+* Default values populated correctly
+* Record lifecycle: **NAU → LIVE**
+* Duplicate customer prevention
+* Audit trail captures maker/checker
 
 ---
 
-### 💳 2. Open Account
+## 💳 2. Open Account
 
-**Steps:**
+### Steps
 
 * Open ACCOUNT for customer
-* Enter Category, Currency, Account Title
+* Enter:
+
+  * Category
+  * Currency
+  * Account Title
 * Validate → Commit → Authorize
 
-**QA Validation:**
+### QA Validation
 
 * Customer linkage is correct
-* Currency and category valid
+* Currency and category are valid
 * Unique account number generated
-* INPUT.ROUTINE executed (if configured)
-* Record lifecycle: NAU → LIVE
+* **INPUT.ROUTINE** executed (if configured)
+* Record lifecycle: **NAU → LIVE**
 
 ---
 
-### 💰 3. Fund Account
+## 💰 3. Fund Account (Pre-Transaction Validation)
 
-**Steps:**
+### Steps
 
 * Ensure debit account has sufficient balance
 * Confirm account status = ACTIVE
 
-**QA Validation:**
+### QA Validation
 
 * Available balance ≥ transfer amount
 * No posting restrictions or blocked funds
 * Account eligible for transaction
+* No unauthorized holds affecting balance
 
 ---
 
-### 💸 4. Perform Funds Transfer
+## 💸 4. Perform Funds Transfer
 
-**Steps:**
+### Steps
 
 * Create new FT transaction
-* Enter debit account, credit account, amount, and narrative
+* Enter:
+
+  * Debit account
+  * Credit account
+  * Amount
+  * Narrative
 * Commit → Authorize
 
-**QA Validation:**
+### QA Validation
 
-* VALIDATION.RTN:
+#### Validation Layer (VALIDATION.RTN)
 
-  * Reject invalid accounts
-  * Validate currency consistency
-* INPUT.ROUTINE:
+* Reject invalid or inactive accounts
+* Validate currency consistency
+* Enforce business rules (limits, formats)
 
-  * Prevent duplicate or invalid entries
-* AUTH.ROUTINE:
+#### Input Layer (INPUT.ROUTINE)
 
-  * Ensure post-authorization updates
+* Prevent duplicate transactions
+* Validate pre-save conditions
+* Apply local/system-specific logic
+
+#### Authorization Layer (AUTH.ROUTINE)
+
+* Ensure correct post-authorization updates
+* Trigger downstream processing
+* No validation executed at auth stage
 
 ---
 
-### 📊 5. Verify Outcomes
+## 📊 5. Verify Outcomes
 
-#### Functional Validation
+### Functional Validation
 
 * Debit account balance decreases correctly
 * Credit account balance increases correctly
-* Transaction appears in enquiry
+* Transaction visible in enquiry screens
 
-#### Accounting Validation
+---
 
-* Total Debit = Total Credit
-* Correct entries in:
+### Accounting Validation
+
+* **Total Debit = Total Credit**
+* Correct entries created in:
 
   * ACCOUNT
   * STMT.ENTRY
-  * Accounting tables
-
-#### Audit Validation
-
-* Transaction recorded in history (HIS)
-* Audit trail available
-* Maker/Checker properly recorded
+  * Accounting/ledger tables
 
 ---
 
-## ⚠️ Risks Validated
+### Audit & Traceability Validation
 
-* Incorrect authorization flow (NAU → LIVE bypass)
-* Invalid balance updates
-* Duplicate transactions
-* Missing accounting entries
+* Transaction recorded in:
+
+  * History (HIS)
+  * Audit logs
+* Maker and checker properly captured
+* Full traceability from input → authorization
+
+---
+
+# ⚠️ Risks Validated
+
+* Authorization bypass (**NAU → LIVE without approval**)
+* Incorrect balance computation
+* Duplicate transaction processing
+* Missing or incorrect accounting entries
 * Data inconsistency across modules
 * Weak segregation of duties
+* API routine misconfiguration or failure
 
 ---
 
-## 🔍 API Validation Coverage
+# 🔍 API Validation Coverage
 
 | API            | Validation Focus                                |
 | -------------- | ----------------------------------------------- |
@@ -154,33 +187,36 @@ Customer → Account → Funds Transfer → Statement / Accounting Entries
 
 ---
 
-## 🧠 QA Techniques Applied
+# 🧠 QA Techniques Applied
 
 * Functional Testing
-* Data Validation (UI vs Backend)
-* Integration Testing (Customer → Account → FT)
-* Authorization Flow Testing
-* Negative Testing (invalid input, insufficient balance)
+* Negative Testing
+* Integration Testing (**Customer → Account → FT**)
+* Authorization Flow Testing (**Maker/Checker**)
+* Financial Data Validation (**Debit = Credit**)
+* API Testing (T24 internal subroutines)
+* Regression Testing
 
 ---
 
-## 💼 Portfolio Talking Points
+# 💼 Portfolio Talking Points
 
-* Demonstrates strong core banking domain knowledge (T24)
-* Covers full end-to-end transaction lifecycle
-* Validates financial accuracy and accounting integrity
-* Shows understanding of Maker/Checker controls
-* Includes API-level validation (VALIDATION.RTN, AUTH.ROUTINE)
-* Can be expanded into smoke, regression, and release test packs
+* Demonstrates **strong core banking domain expertise (T24)**
+* Covers **complete transaction lifecycle (end-to-end)**
+* Validates **financial accuracy and accounting integrity**
+* Shows deep understanding of **Maker/Checker controls**
+* Includes **API-level validation (rare QA skill)**
+* Aligns with **real banking system testing practices**
 
 ---
 
-## 🚀 Summary
+# 🚀 Summary
 
-This case study demonstrates a **real-world banking QA scenario**, combining:
+This case study demonstrates a **real-world banking QA implementation**, combining:
 
 * Functional validation
 * Financial data verification
 * API-driven process validation
+* Authorization and security control testing
 
-It highlights the ability to test **complex, integrated financial systems**, beyond standard UI-based testing.
+It highlights the ability to test **complex, integrated financial systems**, beyond standard UI-based testing—positioning this work at a **senior QA / fintech level**.
