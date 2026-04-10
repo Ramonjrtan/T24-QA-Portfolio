@@ -44,7 +44,7 @@ End-to-end validation of core banking workflows using T24-style systems:
 
 I help validate banking systems, transactions, and financial workflows.
 
-👉 Message me for QA Audit
+👉 Message me for QA role
 
 ---
 
